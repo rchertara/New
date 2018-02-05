@@ -52,7 +52,7 @@ public class SongLibrary {
 				SongNode newNode=new SongNode(textArray[0],textArray[1],textArray[2],textArray[3]);	
 				
 				this.arrayList.add(newNode);
-				System.out.println("added");
+				//System.out.println("added");
 					
 					
 				}

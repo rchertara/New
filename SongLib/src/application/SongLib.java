@@ -38,7 +38,7 @@ public class SongLib extends Application {
     	
     	  Parent root = FXMLLoader.load(getClass().getResource("songLib_layout.fxml"));
        primaryStage.setTitle("Song Library");
-        primaryStage.setScene(new Scene(root, 685, 688));
+        primaryStage.setScene(new Scene(root, 688, 502));
        primaryStage.show();
        
         
