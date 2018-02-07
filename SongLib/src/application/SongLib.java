@@ -21,7 +21,7 @@ public class SongLib extends Application {
       	for (int i = 0; i < library.arrayList.size(); i++) {
              SongNode val =library.arrayList.get(i);
              String value=val.SongName;
-             System.out.println("Element: " + value);
+             //System.out.println("Element: " + value);
          }
       	 
       	
@@ -38,7 +38,7 @@ public class SongLib extends Application {
     	
     	  Parent root = FXMLLoader.load(getClass().getResource("songLib_layout.fxml"));
        primaryStage.setTitle("Song Library");
-        primaryStage.setScene(new Scene(root, 688, 502));
+        primaryStage.setScene(new Scene(root, 685, 688));
        primaryStage.show();
        
         

@@ -21,7 +21,7 @@ public class SongLibrary {
 		 
 		
 	}
-	public ArrayList<SongNode> getArrayList() {         
+	public ArrayList<SongNode> getArrayList() {  //still not sure if i need this        
 		    return this.arrayList;     
     }    
 	
@@ -44,15 +44,18 @@ public class SongLibrary {
 			try {
 				while((text=buffer.readLine())!=null) {
 				String textArray[]= new String[4];
+				
 				String temp[]= text.split(",");
+				
 				for(int i=0;i<temp.length;i++) {
 					textArray[i]=temp[i];
 				}
 					
 				SongNode newNode=new SongNode(textArray[0],textArray[1],textArray[2],textArray[3]);	
 				
+			
 				this.arrayList.add(newNode);
-				//System.out.println("added");
+			//	System.out.println("added");
 					
 					
 				}
@@ -64,19 +67,81 @@ public class SongLibrary {
 			
 	}
 	
-	public void insertSong(SongNode newSong) {
+	public void Add(SongNode newSong) {
 		
 		if(!arrayList.contains(newSong)){
+		
 			
 			arrayList.add(newSong);
 		
-			Collections.sort(arrayList);
+			Collections.sort(arrayList);// for each add you must put in correct spot
+		    //could you binary search to find correct spot but much easier
 			
 			return;
-		
 		}
-		else return;
+		
+		else {
+			System.out.print("already in library!");
+			return;
+		}
+	
+	
 	}
+	
+	
+	public void Delete(String SongName, String ArtistName) {
+		
+		for (int i = 0; i < arrayList.size(); i++) {
+            SongNode node =arrayList.get(i);
+           if(node.getSongName()==SongName && node.getArtistName()==ArtistName) {
+        	   arrayList.remove(i);
+        	   return;
+           }
+           else {
+        	   continue;
+           }
+            
+        }
+		
+		Collections.sort(arrayList);
+		
+		
+	}
+	
+	public void Edit(String currSong,String currArtist, String newName, String newArtist, String newAlb, String newYear) {
+		
+		
+		 
+		
+		for (int i = 0; i < arrayList.size(); i++) {
+            SongNode node =arrayList.get(i);
+           if(node.getSongName()==currSong && node.getArtistName()==currArtist) {
+       
+        	       node.setSongName(newName);
+        	       node.setArtistName(newArtist);
+        	       node.setAlbum(newAlb);
+        	       node.setYear(newYear);
+        	   
+        	   }
+           
+           else {
+        	   continue;
+           }
+            
+        }
+		
+		 
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -84,41 +149,3 @@ public class SongLibrary {
 }
 
 
-
-//need to create a sorting method 
-
-//public SongNode head=null;
-	
-
-//public void AddSong(String SongName, String ArtistName, String Album, String Year) {
-//    
-//	SongNode newSong= new SongNode(SongName,ArtistName,Album,Year);
-//	newSong.next=head;
-//	head=newSong;//insert to the front of the list 
-//	
-//	//call sorting method for every add 
-//}
-//
-//public void deleteSong(String SongName, String ArtistName) {
-//	SongNode curr;
-//	SongNode prev=null;
-//	int flag=0;
-//	for(curr=head;curr!=null;curr=curr.next){
-//	
-//		if(curr.SongName==SongName && curr.ArtistName==ArtistName) {
-//			prev.next=curr.next;
-//			flag++;
-//		}
-//		else {
-//			prev=curr;
-//		}
-//		
-//     }
-//	
-//	if(flag==1) {
-//		//call sorting method
-//	}
-//
-//}
-//
-//}
