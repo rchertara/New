@@ -1,5 +1,6 @@
 package application;
 import java.io.BufferedReader;
+
 import java.util.ArrayList; 
 import java.util.Collections;   
 import java.io.File;
@@ -12,24 +13,33 @@ import javafx.collections.ObservableList;
 
 public class SongLibrary {
 	
-	public ArrayList<SongNode> arrayList;
-	//ObservableList  <SongNode> songList;
+	//public songList<SongNode> arrayList;
+	ObservableList<SongNode> songList;
 	
 	public SongLibrary() {
-		//this.songList=FXCollections.observableArrayList();
-		  this.arrayList= new ArrayList<SongNode>();
+		//this.songList=FXCollections.observablesongList();
+		 // this.songList= new songList<SongNode>();
+		  this.songList = FXCollections.observableArrayList();
 		 
 		
 	}
-	public ArrayList<SongNode> getArrayList() {         
-		    return this.arrayList;     
+	public ObservableList<SongNode> getsongList() {  //still not sure if i need this        
+		    return this.songList;     
     }    
 	
-	public ArrayList<SongNode> sortAscending() {         
-		    Collections.sort(this.arrayList);         
-		    return this.arrayList;     
+	public ObservableList<SongNode> sortAscending() {         
+		    FXCollections.sort(this.songList);         
+		    return this.songList;     
 	}       
-	
+	 public void print() {
+	    	
+	      	for (int i = 0; i < this.songList.size(); i++) {
+	            SongNode val =this.songList.get(i);
+	            
+	            System.out.println(val.SongName+"-->"+val.ArtistName);
+	        }
+	     	 
+	    }
 	public void parse(){
 		String text="";
 		BufferedReader buffer = null;
@@ -44,15 +54,18 @@ public class SongLibrary {
 			try {
 				while((text=buffer.readLine())!=null) {
 				String textArray[]= new String[4];
+				
 				String temp[]= text.split(",");
+				
 				for(int i=0;i<temp.length;i++) {
 					textArray[i]=temp[i];
 				}
 					
 				SongNode newNode=new SongNode(textArray[0],textArray[1],textArray[2],textArray[3]);	
 				
-				this.arrayList.add(newNode);
-				//System.out.println("added");
+			//MUST MAKE A CATCH HERE FOR if songs are dupliate 
+				this.songList.add(newNode);
+			
 					
 					
 				}
@@ -64,61 +77,91 @@ public class SongLibrary {
 			
 	}
 	
-	public void insertSong(SongNode newSong) {
+	public void Add(SongNode newSong) {
 		
-		if(!arrayList.contains(newSong)){
+		if(!songList.contains(newSong)){
+		
 			
-			arrayList.add(newSong);
-		
-			Collections.sort(arrayList);
+			songList.add(newSong);
+		    
+			FXCollections.sort(songList);// for each add you must put in correct spot
+		    //could you binary search to find correct spot but much easier
 			
 			return;
-		
 		}
-		else return;
+		
+		else {
+			System.out.print("cant add, already in library!!!!!!");
+			 return;
+		}
+	
+	
+	}
+	
+	
+	public void Delete(String SongName, String ArtistName) {
+		
+		for (int i = 0; i < songList.size(); i++) {
+            SongNode node =songList.get(i);
+           if(node.getSongName()==SongName && node.getArtistName()==ArtistName) {
+        	   songList.remove(i);
+        	   return;
+           }
+           else {
+        	   continue;
+           }
+            
+        }
+		
+		FXCollections.sort(songList);
+		return;
+		
+		
+	}
+	
+	public void Edit(String currSong,String currArtist, String newName, String newArtist, String newAlb, String newYear) {
+		
+ 
+		SongNode target= new SongNode(newName,newArtist);
+	
+		int targetIndex= songList.indexOf(target);
+      
+			if(targetIndex==-1) {
+			
+				for (int i = 0; i < songList.size(); i++) {
+			    SongNode node =songList.get(i);
+				if(node.getSongName()==currSong && node.getArtistName()==currArtist) {
+       
+					node.setSongName(newName);
+					node.setArtistName(newArtist);
+					node.setAlbum(newAlb);
+					node.setYear(newYear);
+        	   
+					
+					FXCollections.sort(songList);
+					return;
+				}
+           
+				else {
+					continue;
+				}
+            
+				}
+		
+		 }
+			
+			else {
+				System.out.println("Not allowed to make this edit, another song with these param exists!");
+				return;
+			}
+	
+	
 	}
 	
 	
 	
-
 }
-
-
-
-//need to create a sorting method 
-
-//public SongNode head=null;
+	
 	
 
-//public void AddSong(String SongName, String ArtistName, String Album, String Year) {
-//    
-//	SongNode newSong= new SongNode(SongName,ArtistName,Album,Year);
-//	newSong.next=head;
-//	head=newSong;//insert to the front of the list 
-//	
-//	//call sorting method for every add 
-//}
-//
-//public void deleteSong(String SongName, String ArtistName) {
-//	SongNode curr;
-//	SongNode prev=null;
-//	int flag=0;
-//	for(curr=head;curr!=null;curr=curr.next){
-//	
-//		if(curr.SongName==SongName && curr.ArtistName==ArtistName) {
-//			prev.next=curr.next;
-//			flag++;
-//		}
-//		else {
-//			prev=curr;
-//		}
-//		
-//     }
-//	
-//	if(flag==1) {
-//		//call sorting method
-//	}
-//
-//}
-//
-//}
+
