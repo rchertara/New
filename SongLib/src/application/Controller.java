@@ -2,6 +2,7 @@ package application;
 
 
 import javafx.scene.control.ListCell;
+
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +21,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
-public class Controller{
+public class Controller implements ChangeListener<SongNode> {
 	
 	//Buttons
 	@FXML Button addButton;
@@ -42,15 +43,25 @@ public class Controller{
 	
 	
 	
-	 @FXML
-	    public void initialize() {
+	 //@SuppressWarnings("unchecked")
+	@FXML
+	    public void initialize() {  
 		 library.parse();
 		 library.sortAscending();
-		 //library.print();
+		   //library.print();
 	       // SongLibraryModel.setTheModel(library);
 	        //
-	        listView.setItems(library.getsongList());
-	       
+	  listView.setItems(library.getsongList());
+	  listView.getSelectionModel()
+	  .selectedItemProperty()
+	  .addListener(this);
+	  
+	//  if (library.getsongList().size() > 0) {
+      //    listView.getSelectionModel().select(0);
+      //}
+     
+     // int index = listView.getSelectionModel().getSelectedIndex();
+	  //listView.getSelectionModel().select(index);
 	    }
 
 	
@@ -90,6 +101,14 @@ public class Controller{
 	public void delClicked() {
 		Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to make these changes?", ButtonType.YES,  ButtonType.CANCEL);
         alert_confirm.showAndWait();
+	}
+
+
+
+	@Override
+	public void changed(ObservableValue<? extends SongNode> arg0, SongNode arg1, SongNode arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
