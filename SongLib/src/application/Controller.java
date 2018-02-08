@@ -3,6 +3,7 @@ package application;
 
 import javafx.scene.control.ListCell;
 
+
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,9 +57,9 @@ public class Controller implements ChangeListener<SongNode> {
 	  .selectedItemProperty()
 	  .addListener(this);
 	  
-	//  if (library.getsongList().size() > 0) {
-      //    listView.getSelectionModel().select(0);
-      //}
+	 if (library.getsongList().size() > 0) {
+      //    listView.getSelectionModel().select(3);
+      }
      
      // int index = listView.getSelectionModel().getSelectedIndex();
 	  //listView.getSelectionModel().select(index);
@@ -67,7 +68,9 @@ public class Controller implements ChangeListener<SongNode> {
 	
 	
 	public void addClicked() {
-		//nameField empty
+		
+		
+	//nameField empty
 		if(nameField.getText().equals("")) {
 			Alert alert_name = new Alert(Alert.AlertType.WARNING, "Song name is empty.", ButtonType.OK);
 			alert_name.showAndWait();
@@ -79,7 +82,16 @@ public class Controller implements ChangeListener<SongNode> {
 		else {
 			Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to add this song to the list?", ButtonType.YES,  ButtonType.CANCEL);
 	        alert_confirm.showAndWait();
-		}
+	        
+	        SongNode newNode= new SongNode(nameField.getText(),artistField.getText());
+	        library.Add(newNode); //has sort in it 
+	        listView.setItems(library.getsongList());//great this works!!!
+	        
+	     }
+		
+		
+		
+		
 		
 	}
 	

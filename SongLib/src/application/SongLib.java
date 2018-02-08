@@ -30,19 +30,12 @@ public class SongLib extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-         //for (int i = 0; i < library.songList.size(); i++) {
-         //   SongNode val =library.songList.get(i);
-         // String value=val.SongName;
-         //System.out.println("Element: " + value);
-        // }
+         
       	 
 
     Parent root = FXMLLoader.load(getClass().getResource("songLib_layout.fxml"));
     FXMLLoader loader = new FXMLLoader();
     Controller listController = loader.getController();
-   
-
-    
     primaryStage.setTitle("Song Library");
     primaryStage.setScene(new Scene(root, 688, 502));
     primaryStage.show();        
