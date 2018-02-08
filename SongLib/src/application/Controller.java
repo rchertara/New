@@ -34,19 +34,25 @@ public class Controller{
 	//ListView
 	@FXML public ListView<SongNode> listView;
 	
-	SongLibrary model = new SongLibrary();
-	
+	SongLibrary library = new SongLibrary();
 
-	ObservableList<SongNode> stringList= FXCollections.observableArrayList();
+	
+	ObservableList<String> stringList= FXCollections.observableArrayList();
 	
 	
-	@FXML
-	public void listInit() {
-		//listView.getSelectionModel().selectedItemProperty().addListener(this);;
-		
-		
 	
-	}
+	
+	 @FXML
+	    public void initialize() {
+		 library.parse();
+		 library.sortAscending();
+		 //library.print();
+	       // SongLibraryModel.setTheModel(library);
+	        //
+	        listView.setItems(library.getsongList());
+	       
+	    }
+
 	
 	
 	public void addClicked() {
@@ -87,46 +93,30 @@ public class Controller{
 	}
 
 
-	public void initialize(SongLibrary model) {
-		// TODO Auto-generated method stub
-		/*stringList.add("123");
-		stringList.add("123a");
-		stringList.add("123b");
-		listView.setItems(stringList);
-	*/
-		
-		ObservableList<SongNode> myObservableList = FXCollections.observableList(model.songList);
-		    listView.setItems(myObservableList);
-		    
-		    listView.setCellFactory(new Callback<ListView<SongNode>, ListCell<SongNode>>(){
-		    	 
-		        @Override
-		        public ListCell<SongNode> call(ListView<SongNode> p) {
-		             
-		            ListCell<SongNode> cell = new ListCell<SongNode>(){
-
-		               @Override
-		                protected void updateItem(SongNode t, boolean bln) {
-		                    super.updateItem(t, bln);
-		                    if (t != null) {
-		                        setText(t.getSongName());
-		                    }
-		                }
-
-		            };
-		             
-		            return cell;
-		        }
-		    });
-		
-	}
-
-
 	
+//	public void initialize() {
+//		// TODO Auto-generated method stub
+//		
+//		for (int i = 0; i < model.songList.size(); i++) {
+//			
+//		}
+//		
+//		
+//		stringList.add("");
+//		listView.setItems(stringList);
+//		
+//	}
 
-	
-	
-	
+
 	
 	
 }
+
+
+	
+
+	
+	
+	
+	
+	
