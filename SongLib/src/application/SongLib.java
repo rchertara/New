@@ -1,13 +1,13 @@
 package application;
 	
-
+//import Controller.java;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -17,6 +17,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+
+
+
 
 public class SongLib extends Application {
 	//public ArrayList<SongNode> arrayList;
@@ -34,14 +37,16 @@ public class SongLib extends Application {
     	//SongLibrary library = new SongLibrary();
   	//library.parse();
     	
+    	
+    	
     	SongLibrary library = new SongLibrary();
       	library.parse();
       	library.sortAscending();
       	
-      	for (int i = 0; i < library.arrayList.size(); i++) {
-             SongNode val =library.arrayList.get(i);
+      	for (int i = 0; i < library.songList.size(); i++) {
+             SongNode val =library.songList.get(i);
              String value=val.SongName;
-             System.out.println("Element: " + value);
+             //System.out.println("Element: " + value);
          }
       	 
    
@@ -53,32 +58,20 @@ public class SongLib extends Application {
     
     //make list view
     
-    ListView<SongNode> listView = new ListView<>();
-    ObservableList<SongNode> myObservableList = FXCollections.observableList(library.arrayList);
-    listView.setItems(myObservableList);
-    
-    listView.setCellFactory(new Callback<ListView<SongNode>, ListCell<SongNode>>(){
-    	 
-        @Override
-        public ListCell<SongNode> call(ListView<SongNode> p) {
-             
-            ListCell<SongNode> cell = new ListCell<SongNode>(){
+   // ListView<SongNode> listView = new ListView<>();
+   
 
-                @Override
-                protected void updateItem(SongNode t, boolean bln) {
-                    super.updateItem(t, bln);
-                    if (t != null) {
-                        setText(t.getSongName());
-                    }
-                }
-
-            };
-             
-            return cell;
-        }
-    });
-
+    //listView.setItems(library.getsongList());
+      	
+		
+    //library.print();
     Parent root = FXMLLoader.load(getClass().getResource("songLib_layout.fxml"));
+    FXMLLoader loader = new FXMLLoader();
+    Controller listController = loader.getController();
+   
+    listController.initialize(library);
+    
+    
     primaryStage.setTitle("Song Library");
     primaryStage.setScene(new Scene(root, 688, 502));
     primaryStage.show();        

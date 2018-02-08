@@ -1,10 +1,14 @@
 package application;
 
+
+import javafx.scene.control.ListCell;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 
@@ -27,13 +32,20 @@ public class Controller{
 	@FXML TextField albumField;
 	@FXML TextField yearField;
 	//ListView
-	@FXML ListView<SongNode> listView;
+	@FXML public ListView<SongNode> listView;
+	
+	SongLibrary model = new SongLibrary();
+	
+
+	ObservableList<SongNode> stringList= FXCollections.observableArrayList();
+	
 	
 	@FXML
-	public void listInit(SongLibrary model) {
-		model.getArrayList();
-		//Parameter 'model' is not assignable to javafx.event.Event
-		//can do model.arrayList;
+	public void listInit() {
+		//listView.getSelectionModel().selectedItemProperty().addListener(this);;
+		
+		
+	
 	}
 	
 	
@@ -73,8 +85,45 @@ public class Controller{
 		Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to make these changes?", ButtonType.YES,  ButtonType.CANCEL);
         alert_confirm.showAndWait();
 	}
+
+
+	public void initialize(SongLibrary model) {
+		// TODO Auto-generated method stub
+		/*stringList.add("123");
+		stringList.add("123a");
+		stringList.add("123b");
+		listView.setItems(stringList);
+	*/
+		
+		ObservableList<SongNode> myObservableList = FXCollections.observableList(model.songList);
+		    listView.setItems(myObservableList);
+		    
+		    listView.setCellFactory(new Callback<ListView<SongNode>, ListCell<SongNode>>(){
+		    	 
+		        @Override
+		        public ListCell<SongNode> call(ListView<SongNode> p) {
+		             
+		            ListCell<SongNode> cell = new ListCell<SongNode>(){
+
+		               @Override
+		                protected void updateItem(SongNode t, boolean bln) {
+		                    super.updateItem(t, bln);
+		                    if (t != null) {
+		                        setText(t.getSongName());
+		                    }
+		                }
+
+		            };
+		             
+		            return cell;
+		        }
+		    });
+		
+	}
+
+
 	
-	
+
 	
 	
 	
