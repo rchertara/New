@@ -22,17 +22,22 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
-public class Controller implements ChangeListener<SongNode> {
+public class Controller{
 	
 	//Buttons
 	@FXML Button addButton;
 	@FXML Button editButton;
 	@FXML Button delButton;
-	//TextField
+	//TextField	1-4
 	@FXML TextField nameField;
 	@FXML TextField artistField;
 	@FXML TextField albumField;
 	@FXML TextField yearField;
+	//TextField 5-8
+	@FXML TextField nameFieldedit;
+	@FXML TextField artistFieldedit;
+	@FXML TextField albumFieldedit;
+	@FXML TextField yearFieldedit;
 	//ListView
 	@FXML public ListView<SongNode> listView;
 	
@@ -53,9 +58,7 @@ public class Controller implements ChangeListener<SongNode> {
 	       // SongLibraryModel.setTheModel(library);
 	        //
 	  listView.setItems(library.getsongList());
-	  listView.getSelectionModel()
-	  .selectedItemProperty()
-	  .addListener(this);
+	  listView.getSelectionModel();
 	  
 	 if (library.getsongList().size() > 0) {
       //    listView.getSelectionModel().select(3);
@@ -63,8 +66,27 @@ public class Controller implements ChangeListener<SongNode> {
      
      // int index = listView.getSelectionModel().getSelectedIndex();
 	  //listView.getSelectionModel().select(index);
-	    }
+	    
+	//setting edit stuff to non-visible
+		nameFieldedit.setDisable(true);
+		artistFieldedit.setDisable(true);
+		albumFieldedit.setDisable(true);
+		yearFieldedit.setDisable(true);
+	}//initialize method
 
+	
+	public void listSelect() {
+	listView.getSelectionModel().getSelectedItem();	
+	
+	//when something is selected, do the following:
+	//setting edit stuff to non-visible
+			nameFieldedit.setDisable(false);
+			artistFieldedit.setDisable(false);
+			albumFieldedit.setDisable(false);
+			yearFieldedit.setDisable(false);
+	
+	}
+	
 	
 	
 	public void addClicked() {
@@ -91,11 +113,12 @@ public class Controller implements ChangeListener<SongNode> {
 		
 		
 		
-		
-		
 	}
 	
+
+	
 	public void editClicked() {
+
 		if(nameField.getText().equals("")) {
 			Alert alert_name = new Alert(Alert.AlertType.WARNING, "Song name is empty.", ButtonType.OK);
 			alert_name.showAndWait();
@@ -117,13 +140,7 @@ public class Controller implements ChangeListener<SongNode> {
 
 
 
-	@Override
-	public void changed(ObservableValue<? extends SongNode> arg0, SongNode arg1, SongNode arg2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
+	
 	
 //	public void initialize() {
 //		// TODO Auto-generated method stub

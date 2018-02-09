@@ -28,7 +28,6 @@ public class SongNode implements Comparable <SongNode>{
 
 	   @Override
 	   
-	   
 	   public int compareTo(SongNode otherSong) { //uses object compare
 		   int ans=0;
 		   
@@ -54,7 +53,7 @@ public class SongNode implements Comparable <SongNode>{
 	   
 
 	   
-	  @Override 
+	 @Override 
 	  public boolean equals(Object o) {
 	    
 		  
@@ -65,10 +64,21 @@ public class SongNode implements Comparable <SongNode>{
 	      
 	      SongNode songnode = (SongNode) o;
 	      
-	      boolean flag1 =this.SongName.equals(songnode.SongName);
+	      if(this.SongName==null||songnode.SongName==null) {
+	    	  return false;
+	      }
+	      else if(this.ArtistName==null||songnode.ArtistName==null){
+	    	  return false;
+	      }
+	      
+	      else {
+	      
+		      boolean flag1 =this.SongName.equals(songnode.SongName);
 	    	  boolean flag2 =this.ArtistName.equals(songnode.ArtistName);
 	      
 	      return flag1&&flag2;
+	      }
+	      
 	   }
 	  
 	  

@@ -37,7 +37,7 @@ public class SongLib extends Application {
     FXMLLoader loader = new FXMLLoader();
     Controller listController = loader.getController();
     primaryStage.setTitle("Song Library");
-    primaryStage.setScene(new Scene(root, 688, 502));
+    primaryStage.setScene(new Scene(root, 808,624));
     primaryStage.show();        
     
     }
