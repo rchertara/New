@@ -30,15 +30,12 @@ public class SongLib extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-         
-      	 
-
-    Parent root = FXMLLoader.load(getClass().getResource("songLib_layout.fxml"));
-    FXMLLoader loader = new FXMLLoader();
-    Controller listController = loader.getController();
-    primaryStage.setTitle("Song Library");
-    primaryStage.setScene(new Scene(root, 808,624));
-    primaryStage.show();        
+	    Parent root = FXMLLoader.load(getClass().getResource("songLib_layout.fxml"));
+	    FXMLLoader loader = new FXMLLoader();
+	    Controller listController = loader.getController();
+	    primaryStage.setTitle("Song Library");
+	    primaryStage.setScene(new Scene(root, 808,624));
+	    primaryStage.show();        
     
     }
     

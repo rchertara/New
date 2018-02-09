@@ -6,6 +6,7 @@ import javafx.scene.control.ListCell;
 
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -102,20 +103,23 @@ public class Controller{
 			alert_artist.showAndWait();
 		}
 		else {
-			Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to add this song to the list?", ButtonType.YES,  ButtonType.CANCEL);
-	        alert_confirm.showAndWait();
-	        
-	        SongNode newNode= new SongNode(nameField.getText(),artistField.getText());
-	        library.Add(newNode); //has sort in it 
-	        listView.setItems(library.getsongList());//great this works!!!
-	        
+			Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION);
+			alert_confirm.setTitle("Confirmation of Addition");
+			alert_confirm.setHeaderText("Confirm the following:");
+			Optional<ButtonType> result = alert_confirm.showAndWait();
+			if (result.get() == ButtonType.OK){
+			    // ... user chose OK
+				SongNode newNode= new SongNode(nameField.getText(),artistField.getText());
+		        library.Add(newNode); //has sort in it 
+		        listView.setItems(library.getsongList());//great this works!!!
+			} else {
+			    // ... user chose CANCEL or closed the dialog
+				
+				}
+     
 	     }
-		
-		
-		
-	}
 	
-
+	}
 	
 	public void editClicked() {
 
@@ -128,8 +132,20 @@ public class Controller{
 			alert_artist.showAndWait();
 		}
 		else {
-			Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to make these changes?", ButtonType.YES,  ButtonType.CANCEL);
-	        alert_confirm.showAndWait();
+			Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to make these changes?");
+			alert_confirm.setTitle("Confirmation of Edit");
+			alert_confirm.setHeaderText("Confirm the following:");
+			Optional<ButtonType> result = alert_confirm.showAndWait();
+			if (result.get() == ButtonType.OK){
+			    // ... user chose OK
+				//SongNode newNode = new SongNode();
+				
+				
+			} else {
+			    // ... user chose CANCEL or closed the dialog
+				
+			}
+	        
 		}
 	}
 	
@@ -139,25 +155,6 @@ public class Controller{
 	}
 
 
-
-	
-	
-//	public void initialize() {
-//		// TODO Auto-generated method stub
-//		
-//		for (int i = 0; i < model.songList.size(); i++) {
-//			
-//		}
-//		
-//		
-//		stringList.add("");
-//		listView.setItems(stringList);
-//		
-//	}
-
-
-	
-	
 }
 
 

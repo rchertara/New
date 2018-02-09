@@ -53,7 +53,7 @@ public class SongNode implements Comparable <SongNode>{
 	   
 
 	   
-	 @Override 
+	/* @Override 
 	  public boolean equals(Object o) {
 	    
 		  
@@ -79,7 +79,7 @@ public class SongNode implements Comparable <SongNode>{
 	      return flag1&&flag2;
 	      }
 	      
-	   }
+	   }*/
 	  
 	  
 
