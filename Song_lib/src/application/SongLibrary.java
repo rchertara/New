@@ -1,13 +1,9 @@
 package application;
 import java.io.BufferedReader;
-
-import java.util.ArrayList; 
-import java.util.Collections;   
-import java.io.File;
+import javafx.scene.control.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -44,7 +40,7 @@ public class SongLibrary {
 		String text="";
 		BufferedReader buffer = null;
 		try {
-			buffer = new BufferedReader(new FileReader("src/application/hate.txt"));
+			buffer = new BufferedReader(new FileReader("C:\\Users\\avocado\\Desktop\\Rutgers\\Spring 2018\\Software Methodology\\Projects\\Song_lib\\src\\application\\hate.txt"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,7 +87,8 @@ public class SongLibrary {
 		}
 		
 		else {
-			System.out.print("cant add, already in library!!!!!!");
+			Alert alert = new Alert(Alert.AlertType.WARNING, "Song already in list.", ButtonType.OK);
+			alert.showAndWait();
 			 return;
 		}
 	
@@ -122,7 +119,7 @@ public class SongLibrary {
 	public void Edit(String currSong,String currArtist, String newName, String newArtist, String newAlb, String newYear) {
 		
  
-		SongNode target= new SongNode(newName,newArtist);
+		SongNode target= new SongNode(newName,newArtist,newAlb,newYear);
 	
 		int targetIndex= songList.indexOf(target);
       
@@ -132,11 +129,16 @@ public class SongLibrary {
 			    SongNode node =songList.get(i);
 				if(node.getSongName()==currSong && node.getArtistName()==currArtist) {
        
-					node.setSongName(newName);
-					node.setArtistName(newArtist);
-					node.setAlbum(newAlb);
-					node.setYear(newYear);
+					songList.remove(i);
+					songList.add(target);
+					
+//					node.setSongName(newName);
+//					node.setArtistName(newArtist);
+//					node.setAlbum(newAlb);
+//					node.setYear(newYear);
         	   
+					
+					
 					
 					FXCollections.sort(songList);
 					return;
@@ -151,7 +153,8 @@ public class SongLibrary {
 		 }
 			
 			else {
-				System.out.println("Not allowed to make this edit, another song with these param exists!");
+				Alert alert = new Alert(Alert.AlertType.WARNING, "Song already in list. Edit cannot be made.", ButtonType.OK);
+				alert.showAndWait();
 				return;
 			}
 	

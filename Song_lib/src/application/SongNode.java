@@ -52,37 +52,30 @@ public class SongNode implements Comparable <SongNode>{
 	   }
 	   
 
-	   
-	/* @Override 
-	  public boolean equals(Object o) {
-	    
-		  
-		  
-		  if(this == o) {
-	        return true;
+	   @Override
+	   public boolean equals(Object songItem) {
+	      if(this == songItem) {
+	         return true;
 	      }
-	      
-	      SongNode songnode = (SongNode) o;
-	      
-	      if(this.SongName==null||songnode.SongName==null) {
-	    	  return false;
-	      }
-	      else if(this.ArtistName==null||songnode.ArtistName==null){
-	    	  return false;
+	  //    this.getClass() != songItem.getClass())
+	      else if(songItem == null || !(songItem instanceof SongNode)) {
+	                                   
 	      }
 	      
 	      else {
-	      
-		      boolean flag1 =this.SongName.equals(songnode.SongName);
-	    	  boolean flag2 =this.ArtistName.equals(songnode.ArtistName);
-	      
-	      return flag1&&flag2;
-	      }
-	      
-	   }*/
-	  
-	  
 
+	      SongNode song = (SongNode) songItem;
+	     // boolean ans=false;
+	      boolean flag1= SongName.equals(song.SongName);
+	    	  boolean flag2= ArtistName.equals(song.ArtistName);
+	    	  return flag1&&flag2;
+	   }
+	 	  return false;
+	  
+	}
+		
+
+	   
 
 public String getSongName() {
 	return SongName;

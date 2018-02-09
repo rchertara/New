@@ -1,27 +1,10 @@
 package application;
 
-
-import javafx.scene.control.ListCell;
-
-
-import javafx.fxml.Initializable;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.util.Callback;
-
-import java.io.IOException;
 
 public class Controller{
 	
@@ -54,15 +37,20 @@ public class Controller{
 	@FXML
 	    public void initialize() {
 			 library.parse();
-			 library.sortAscending();
-			   //library.print();
-		       // SongLibraryModel.setTheModel(library);
-		        //
+		     library.sortAscending();
+			 library.Add(new SongNode("Rahil","Hate"));
+			// library.Add(new SongNode("Rahil","Hate"));
+		       
+		        
+			 
+			 
+			 
+		 // library.print();	 
 		  listView.setItems(library.getsongList());
 		  listView.getSelectionModel();
 		  
 		 if (library.getsongList().size() > 0) {
-	      //    listView.getSelectionModel().select(3);
+	       listView.getSelectionModel().select(0);
 	      }
 	     
 	     // int index = listView.getSelectionModel().getSelectedIndex();
@@ -168,12 +156,3 @@ public class Controller{
 
 
 }
-
-
-	
-
-	
-	
-	
-	
-	
