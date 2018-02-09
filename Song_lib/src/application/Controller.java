@@ -52,32 +52,32 @@ public class Controller{
 	
 	 //@SuppressWarnings("unchecked")
 	@FXML
-	    public void initialize() {  
-		 library.parse();
-		 library.sortAscending();
-		   //library.print();
-	       // SongLibraryModel.setTheModel(library);
-	        //
-	  listView.setItems(library.getsongList());
-	  listView.getSelectionModel();
-	  
-	 if (library.getsongList().size() > 0) {
-      //    listView.getSelectionModel().select(3);
-      }
-     
-     // int index = listView.getSelectionModel().getSelectedIndex();
-	  //listView.getSelectionModel().select(index);
-	    
-	//setting edit stuff to non-visible
-		nameFieldedit.setDisable(true);
-		artistFieldedit.setDisable(true);
-		albumFieldedit.setDisable(true);
-		yearFieldedit.setDisable(true);
+	    public void initialize() {
+			 library.parse();
+			 library.sortAscending();
+			   //library.print();
+		       // SongLibraryModel.setTheModel(library);
+		        //
+		  listView.setItems(library.getsongList());
+		  listView.getSelectionModel();
+		  
+		 if (library.getsongList().size() > 0) {
+	      //    listView.getSelectionModel().select(3);
+	      }
+	     
+	     // int index = listView.getSelectionModel().getSelectedIndex();
+		  //listView.getSelectionModel().select(index);
+		    
+		//setting edit stuff to non-visible
+			nameFieldedit.setDisable(true);
+			artistFieldedit.setDisable(true);
+			albumFieldedit.setDisable(true);
+			yearFieldedit.setDisable(true);
 	}//initialize method
 
 	
 	public void listSelect() {
-	listView.getSelectionModel().getSelectedItem();	
+	listView.getSelectionModel().getSelectedItem();
 	
 	//when something is selected, do the following:
 	//setting edit stuff to non-visible
@@ -85,15 +85,14 @@ public class Controller{
 			artistFieldedit.setDisable(false);
 			albumFieldedit.setDisable(false);
 			yearFieldedit.setDisable(false);
+			
+			//
 	
 	}
 	
-	
-	
+
 	public void addClicked() {
-		
-		
-	//nameField empty
+	
 		if(nameField.getText().equals("")) {
 			Alert alert_name = new Alert(Alert.AlertType.WARNING, "Song name is empty.", ButtonType.OK);
 			alert_name.showAndWait();
@@ -109,7 +108,7 @@ public class Controller{
 			Optional<ButtonType> result = alert_confirm.showAndWait();
 			if (result.get() == ButtonType.OK){
 			    // ... user chose OK
-				SongNode newNode= new SongNode(nameField.getText(),artistField.getText());
+				SongNode newNode= new SongNode(nameField.getText(),artistField.getText(), albumField.getText(),yearField.getText());
 		        library.Add(newNode); //has sort in it 
 		        listView.setItems(library.getsongList());//great this works!!!
 			} else {
@@ -123,11 +122,11 @@ public class Controller{
 	
 	public void editClicked() {
 
-		if(nameField.getText().equals("")) {
+		if(nameFieldedit.getText().equals("")) {
 			Alert alert_name = new Alert(Alert.AlertType.WARNING, "Song name is empty.", ButtonType.OK);
 			alert_name.showAndWait();
 		}
-		else if(artistField.getText().equals("")) {
+		else if(artistFieldedit.getText().equals("")) {
 			Alert alert_artist = new Alert(Alert.AlertType.WARNING, "Artist name is empty.", ButtonType.OK);
 			alert_artist.showAndWait();
 		}
@@ -138,9 +137,9 @@ public class Controller{
 			Optional<ButtonType> result = alert_confirm.showAndWait();
 			if (result.get() == ButtonType.OK){
 			    // ... user chose OK
-				//SongNode newNode = new SongNode();
-				
-				
+				SongNode song = listView.getSelectionModel().getSelectedItem();	
+				library.Edit(song.SongName, song.ArtistName, nameFieldedit.getText(), artistFieldedit.getText(), albumFieldedit.getText(), yearFieldedit.getText());
+				listView.setItems(library.getsongList());
 			} else {
 			    // ... user chose CANCEL or closed the dialog
 				
@@ -150,8 +149,21 @@ public class Controller{
 	}
 	
 	public void delClicked() {
-		Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to make these changes?", ButtonType.YES,  ButtonType.CANCEL);
-        alert_confirm.showAndWait();
+		Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION);
+		alert_confirm.setTitle("Confirmation of Deletion");
+		alert_confirm.setHeaderText("Confirm the following:");
+		Optional<ButtonType> result = alert_confirm.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    // ... user chose OK
+			SongNode song = listView.getSelectionModel().getSelectedItem();	
+			library.Delete(song.SongName, song.ArtistName);
+			listView.setItems(library.getsongList());
+		} else {
+		    // ... user chose CANCEL or closed the dialog
+			
+		}
+		
+        //alert_confirm.showAndWait();
 	}
 
 
