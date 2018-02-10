@@ -16,35 +16,55 @@
    <top>
       <VBox maxHeight="894.0" minHeight="432.0" prefHeight="441.0" prefWidth="952.0" translateY="16.0" BorderPane.alignment="CENTER">
          <children>
-            <Label contentDisplay="CENTER" text="Song Details" textAlignment="JUSTIFY">
+            <Label contentDisplay="CENTER" style="-fx-font-weight: bold;" text="Song Details" textAlignment="JUSTIFY">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Calibri" size="25.0" />
                </font>
                <VBox.margin>
                   <Insets left="8.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="nameLabel" text="Name">
+            <Label layoutX="10.0" layoutY="37.0" style="-fx-font-weight: bold;" text="Name:">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="artistLabel" text="Artist" translateX="116.0" translateY="-36.0">
+            <Label layoutX="10.0" layoutY="74.0" style="-fx-font-weight: bold;" text="Artist:" translateX="321.0" translateY="-32.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="albumLabel" text="Album" translateX="241.0" translateY="-72.0">
+            <Label layoutX="10.0" layoutY="111.0" style="-fx-font-weight: bold;" text="Album:" translateY="-19.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="yearLabel" text="Year" translateX="365.0" translateY="-107.0">
+            <Label layoutX="10.0" layoutY="148.0" style="-fx-font-weight: bold;" text="Year:" translateX="321.0" translateY="-56.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <ListView fx:id="listView" maxHeight="500.0" maxWidth="952.0" minHeight="258.0" onMouseClicked="#listSelect" prefHeight="308.0" prefWidth="952.0" scaleY="1.3" style="-fx-background-color: #e8fafc;" translateY="-60.0" />
+            <Label fx:id="nameLabel" text="Name" translateX="46.0" translateY="-147.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="artistLabel" text="Artist" translateX="363.0" translateY="-179.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="albumLabel" text="Album" translateX="46.0" translateY="-165.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="yearLabel" text="Year" translateX="358.0" translateY="-203.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <ListView fx:id="listView" maxHeight="500.0" maxWidth="952.0" minHeight="258.0" onMouseClicked="#listSelect" prefHeight="308.0" prefWidth="952.0" scaleY="1.15" style="-fx-background-color: #e8fafc;" translateY="-180.0" />
          </children>
       </VBox>
    </top>

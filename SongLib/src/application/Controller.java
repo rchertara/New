@@ -44,7 +44,7 @@ public class Controller{
 	    public void initialize() {
 			 library.parse();
 		     library.sortAscending();
-			 library.Add(new SongNode("Rahil","Hate"));
+			// library.Add(new SongNode("Rahil","Hate"));
 			// library.Add(new SongNode("Rahil","Hate"));
 		       
 		        
@@ -132,8 +132,12 @@ public class Controller{
 			if (result.get() == ButtonType.OK){
 			    // ... user chose OK
 				SongNode newNode= new SongNode(nameField.getText(),artistField.getText(), albumField.getText(),yearField.getText());
-		        library.Add(newNode); //has sort in it 
+				
+		        library.Add(newNode);
+		        //has sort in it 
+		        int index=library.songList.indexOf(newNode);
 		        
+		        listView.getSelectionModel().select(index);
 		        listView.setItems(library.getsongList());//great this works!!!
 			} else {
 			    // ... user chose CANCEL or closed the dialog
@@ -145,6 +149,7 @@ public class Controller{
 	}
 	
 	public void editClicked() {
+		
 
 		if(nameFieldedit.getText().equals("")) {
 			Alert alert_name = new Alert(Alert.AlertType.WARNING, "Song name is empty.", ButtonType.OK);
@@ -160,6 +165,12 @@ public class Controller{
 			alert_confirm.setHeaderText("Confirm the following:");
 			Optional<ButtonType> result = alert_confirm.showAndWait();
 			if (result.get() == ButtonType.OK){
+				
+				if(listView.getSelectionModel().isEmpty()) {
+					Alert alert = new Alert(Alert.AlertType.WARNING, "Cannot Edit From Empty List.", ButtonType.OK);
+					alert.showAndWait();
+					return;
+				}
 			    // ... user chose OK
 				SongNode song = listView.getSelectionModel().getSelectedItem();	
 				library.Edit(song.SongName, song.ArtistName, nameFieldedit.getText(), artistFieldedit.getText(), albumFieldedit.getText(), yearFieldedit.getText());
@@ -179,10 +190,21 @@ public class Controller{
 		Optional<ButtonType> result = alert_confirm.showAndWait();
 		if (result.get() == ButtonType.OK){
 		    // ... user chose OK
+			if(listView.getSelectionModel().isEmpty()) {
+				Alert alert = new Alert(Alert.AlertType.WARNING, "Cannot Delete From Empty List.", ButtonType.OK);
+				alert.showAndWait();
+				return;
+			}
+			
+			
 			SongNode song = listView.getSelectionModel().getSelectedItem();	
+			int index=library.songList.indexOf(song); //find the index of this song in AL
 			library.Delete(song.SongName, song.ArtistName);
+			listView.getSelectionModel().select(index);
 			listView.setItems(library.getsongList());
-		} else {
+		 }
+		
+		else {
 		    // ... user chose CANCEL or closed the dialog
 			
 		}
