@@ -1,18 +1,29 @@
 package application;
 import java.io.BufferedReader;
 
+
 import javafx.scene.control.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
+import java.util.Scanner;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class SongLibrary {
 	
+	   private final static String fileName ="hate.txt";
+		
+	//Rahil Chertara 
+	
 	//public songList<SongNode> arrayList;
 	ObservableList<SongNode> songList;
 	
+	
+ 
 	public SongLibrary() {
 		//this.songList=FXCollections.observablesongList();
 		 // this.songList= new songList<SongNode>();
@@ -41,7 +52,7 @@ public class SongLibrary {
 		String text="";
 		BufferedReader buffer = null;
 		try {
-			buffer = new BufferedReader(new FileReader("src/application/hate.txt"));
+			buffer = new BufferedReader(new FileReader("src/application/"+fileName));
 		}catch(FileNotFoundException e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,6 +85,9 @@ public class SongLibrary {
   
 			
 	}
+	
+	
+	
 	
 	public void Add(SongNode newSong) {
 		

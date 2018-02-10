@@ -2,6 +2,8 @@ package application;
 
 public class SongNode implements Comparable <SongNode>{
 
+	//Rahil Chertara
+	
 	String SongName;
 	String ArtistName;
 	String Album;
@@ -132,6 +134,15 @@ public String toString() {
 	ans=this.SongName+"->"+this.ArtistName;
 	return ans;
 	
+}
+
+public String toText() {
+	String ans="";
+    
+	ans=this.SongName+","+this.ArtistName+","+this.Album+","+this.Year; //take out all fields 
+
+	return ans;
+
 }
 
 

@@ -7,21 +7,35 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class SongLib extends Application {
-	
-	
+	//Rahil Chertara 
+	Stage window;
 	public static void main(String[] args) {
       	 launch(args);
     }
+	
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-	    Parent root = FXMLLoader.load(getClass().getResource("songLib_layout.fxml"));
+	window=primaryStage;    
+    	Parent root = FXMLLoader.load(getClass().getResource("songLib_layout.fxml"));
 	    FXMLLoader loader = new FXMLLoader();
 	    Controller listController = loader.getController();
-	    primaryStage.setTitle("Song Library");
-	    primaryStage.setScene(new Scene(root, 850,650));
-	   primaryStage.show();        
+	    window.setTitle("Song Library");
+	    window.setOnCloseRequest(e->{
+	    		e.consume();
+	    	//	listController.toFile();
+	    		closeProgram();
+	    });
+	    window.setScene(new Scene(root, 650,650));
+	    window.setResizable(false);
+	    window.show();        
     
+    }
+    
+    public void closeProgram() {
+    		window.close();
+    	
     }
     
     

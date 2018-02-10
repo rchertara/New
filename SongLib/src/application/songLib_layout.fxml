@@ -12,64 +12,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<BorderPane prefHeight="629.0" prefWidth="270.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <top>
-      <VBox maxHeight="894.0" minHeight="432.0" prefHeight="441.0" prefWidth="952.0" translateY="16.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="464.0" prefWidth="952.0" BorderPane.alignment="CENTER">
          <children>
-            <Label contentDisplay="CENTER" style="-fx-font-weight: bold;" text="Song Details" textAlignment="JUSTIFY">
+            <Label contentDisplay="CENTER" text="Song Details" textAlignment="JUSTIFY">
                <font>
-                  <Font name="Calibri" size="25.0" />
+                  <Font size="18.0" />
                </font>
-               <VBox.margin>
-                  <Insets left="8.0" />
-               </VBox.margin>
             </Label>
-            <Label layoutX="10.0" layoutY="37.0" style="-fx-font-weight: bold;" text="Name:">
+            <Label fx:id="nameLabel" text="Name">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="74.0" style="-fx-font-weight: bold;" text="Artist:" translateX="321.0" translateY="-32.0">
+            <Label fx:id="artistLabel" text="Artist">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="111.0" style="-fx-font-weight: bold;" text="Album:" translateY="-19.0">
+            <Label fx:id="albumLabel" text="Album">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="148.0" style="-fx-font-weight: bold;" text="Year:" translateX="321.0" translateY="-56.0">
+            <Label fx:id="yearLabel" text="Year">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="nameLabel" text="Name" translateX="46.0" translateY="-147.0">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </Label>
-            <Label fx:id="artistLabel" text="Artist" translateX="363.0" translateY="-179.0">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </Label>
-            <Label fx:id="albumLabel" text="Album" translateX="46.0" translateY="-165.0">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </Label>
-            <Label fx:id="yearLabel" text="Year" translateX="358.0" translateY="-203.0">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </Label>
-            <ListView fx:id="listView" maxHeight="500.0" maxWidth="952.0" minHeight="258.0" onMouseClicked="#listSelect" prefHeight="308.0" prefWidth="952.0" scaleY="1.15" style="-fx-background-color: #e8fafc;" translateY="-180.0" />
-         </children>
-      </VBox>
+            <ListView fx:id="listView" maxWidth="952.0" onMouseClicked="#listSelect" prefHeight="286.0" prefWidth="952.0" style="-fx-background-color: #e8fafc;" />
+         </children></VBox>
    </top>
    <bottom>
-      <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="952.0" BorderPane.alignment="CENTER">
+      <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.0" prefWidth="952.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="addButton" minHeight="35.0" minWidth="75.0" mnemonicParsing="false" onAction="#addClicked" prefHeight="37.0" prefWidth="160.0" text="Add" translateX="10.0">
                <padding>

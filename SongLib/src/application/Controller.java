@@ -1,5 +1,8 @@
 package application;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,6 +10,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class Controller{
+	   private final static String fileName ="hate.txt";
+		
+	//Rahil Chertara
 	
 	//Buttons
 	@FXML Button addButton;
@@ -43,7 +49,7 @@ public class Controller{
 	@FXML
 	    public void initialize() {
 			 library.parse();
-		     library.sortAscending();
+		     //library.sortAscending();
 			// library.Add(new SongNode("Rahil","Hate"));
 			// library.Add(new SongNode("Rahil","Hate"));
 		       
@@ -57,6 +63,14 @@ public class Controller{
 		  
 		 if (library.getsongList().size() > 0) {
 	       listView.getSelectionModel().select(0);
+	       if(listView.getSelectionModel().getSelectedIndex()==0) {
+				SongNode node = library.songList.get(listView.getSelectionModel().getSelectedIndex());
+				   nameLabel.setText(node.SongName);
+				   artistLabel.setText(node.ArtistName);
+				   albumLabel.setText(node.Album);
+				   yearLabel.setText(node.Year);
+			}
+	       
 	      }
 	     
 	     // int index = listView.getSelectionModel().getSelectedIndex();
@@ -68,7 +82,41 @@ public class Controller{
 			albumFieldedit.setDisable(true);
 			yearFieldedit.setDisable(true);
 	}//initialize method
-	
+	public void toFile() {
+		
+		Writer writer = null;
+				try {
+					writer = new FileWriter("src/application/"+fileName);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        	//
+	        	for(int i=0;i<library.songList.size();i++) {
+	        		SongNode node=library.songList.get(i);
+	        		
+	        		String line= node.toText();
+	        		try {
+						writer.write(line);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        		
+	        	}
+	        		
+	        		
+	        		try {
+					writer.close();
+					return;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return;
+				}
+	        
+	      
+		}
 	
 	
 	public void details() {
@@ -85,6 +133,8 @@ public class Controller{
 			   
 		
 		else {
+			
+			
 				  
 				   SongNode node = library.songList.get(listView.getSelectionModel().getSelectedIndex());
 				   nameLabel.setText(node.SongName);
@@ -137,9 +187,18 @@ public class Controller{
 		        //has sort in it 
 		        int index=library.songList.indexOf(newNode);
 		        
-		        listView.getSelectionModel().select(index);
-		        listView.setItems(library.getsongList());//great this works!!!
-			} else {
+		           listView.getSelectionModel().select(index);//as soon as you add must select it 
+		          
+		           //show details as soon as you add,and its auto selected
+		        	   nameLabel.setText(newNode.SongName);
+				   artistLabel.setText(newNode.ArtistName);
+				   albumLabel.setText(newNode.Album);
+				   yearLabel.setText(newNode.Year);
+		       
+				   listView.setItems(library.getsongList());
+			} 
+			
+			else {
 			    // ... user chose CANCEL or closed the dialog
 				
 				}
