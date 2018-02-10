@@ -27,7 +27,7 @@ public class SongNode implements Comparable <SongNode>{
 	
 
 	   @Override
-	   
+	   //these use the comparable method so we can use FX collections sort 
 	   public int compareTo(SongNode otherSong) { //uses object compare
 		   int ans=0;
 		   
@@ -53,6 +53,7 @@ public class SongNode implements Comparable <SongNode>{
 	   
 
 	   @Override
+	   //
 	   public boolean equals(Object songItem) {
 	      if(this == songItem) {
 	         return true;

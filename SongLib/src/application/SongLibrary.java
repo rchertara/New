@@ -1,5 +1,6 @@
 package application;
 import java.io.BufferedReader;
+
 import javafx.scene.control.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -40,11 +41,12 @@ public class SongLibrary {
 		String text="";
 		BufferedReader buffer = null;
 		try {
-			buffer = new BufferedReader(new FileReader("C:\\Users\\avocado\\Desktop\\Rutgers\\Spring 2018\\Software Methodology\\Projects\\Song_lib\\src\\application\\hate.txt"));
-		} catch (FileNotFoundException e) {
+			buffer = new BufferedReader(new FileReader("src/application/hate.txt"));
+		}catch(FileNotFoundException e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 	
 	      
 			try {

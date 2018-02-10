@@ -22,6 +22,12 @@ public class Controller{
 	@FXML TextField artistFieldedit;
 	@FXML TextField albumFieldedit;
 	@FXML TextField yearFieldedit;
+	//Labels
+	@FXML Label nameLabel;
+	@FXML Label artistLabel;
+	@FXML Label albumLabel;
+	@FXML Label yearLabel;
+	
 	//ListView
 	@FXML public ListView<SongNode> listView;
 	
@@ -62,10 +68,39 @@ public class Controller{
 			albumFieldedit.setDisable(true);
 			yearFieldedit.setDisable(true);
 	}//initialize method
+	
+	
+	
+	public void details() {
+		
+		if(library.songList.isEmpty()) {
+			   //Song item = songs.songList.get(listView.getSelectionModel().getSelectedIndex());
+			   nameLabel.setText("");
+			   artistLabel.setText("");
+			   albumLabel.setText("");
+			   yearLabel.setText(""); 
+			   
+			   
+		}
+			   
+		
+		else {
+				  
+				   SongNode node = library.songList.get(listView.getSelectionModel().getSelectedIndex());
+				   nameLabel.setText(node.SongName);
+				   artistLabel.setText(node.ArtistName);
+				   albumLabel.setText(node.Album);
+				   yearLabel.setText(node.Year);
+				   
+			   }
+			   
+		}
 
 	
 	public void listSelect() {
 	listView.getSelectionModel().getSelectedItem();
+   
+	details(); //show details
 	
 	//when something is selected, do the following:
 	//setting edit stuff to non-visible
@@ -98,6 +133,7 @@ public class Controller{
 			    // ... user chose OK
 				SongNode newNode= new SongNode(nameField.getText(),artistField.getText(), albumField.getText(),yearField.getText());
 		        library.Add(newNode); //has sort in it 
+		        
 		        listView.setItems(library.getsongList());//great this works!!!
 			} else {
 			    // ... user chose CANCEL or closed the dialog
