@@ -12,8 +12,11 @@ import javafx.scene.control.*;
 public class Controller{
 	  
 		
-	//Rahil Chertara
-	
+/*@authors
+ * Rahil Chertara
+ * Avantika Yellapantula
+ * */
+	public static int save_check=0;
 	//Buttons
 	@FXML Button addButton;
 	@FXML Button editButton;
@@ -103,16 +106,21 @@ public class Controller{
 		else {
 			
 			     
-				
+				try {
 				   SongNode node = library.songList.get(listView.getSelectionModel().getSelectedIndex());
-				 
-				  
 				   nameLabel.setText(node.SongName);
 				   artistLabel.setText(node.ArtistName);
 				   albumLabel.setText(node.Album);
 				   yearLabel.setText(node.Year);
-				  
-			 
+				   
+				   nameFieldedit.setText(node.SongName);
+				   artistFieldedit.setText(node.ArtistName);
+				   albumFieldedit.setText(node.Album);
+				   yearFieldedit.setText(node.Year);
+				}catch(IndexOutOfBoundsException|NullPointerException e){
+					return;
+				}
+				 
 		}
 			   
 		}
@@ -122,10 +130,24 @@ public class Controller{
 	
 	public void saveClicked() {
 		
-		library.toFile();
+		Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION);
+		alert_confirm.setTitle("Confirmation of Save");
+		alert_confirm.setHeaderText("Are you sure you want to save the song list?");
+		Optional<ButtonType> result = alert_confirm.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    // ... user chose OK
+			library.toFile();
+			save_check++;
+			return;
+		 }
+		
+		else {
+		    // ... user chose CANCEL or closed the dialog
+			
+		}
+		
 		return;
-		
-		
+	
 	}
 
 	
@@ -148,11 +170,11 @@ public class Controller{
 
 	public void addClicked() {
 	
-		if(nameField.getText().equals("")) {
+		if(nameField.getText().trim().equals("")) {
 			Alert alert_name = new Alert(Alert.AlertType.WARNING, "Song name is empty.", ButtonType.OK);
 			alert_name.showAndWait();
 		}
-		else if(artistField.getText().equals("")) {
+		else if(artistField.getText().trim().equals("")) {
 			Alert alert_artist = new Alert(Alert.AlertType.WARNING, "Artist name is empty.", ButtonType.OK);
 			alert_artist.showAndWait();
 		}
@@ -163,7 +185,7 @@ public class Controller{
 			Optional<ButtonType> result = alert_confirm.showAndWait();
 			if (result.get() == ButtonType.OK){
 			    // ... user chose OK
-				SongNode newNode= new SongNode(nameField.getText(),artistField.getText(), albumField.getText(),yearField.getText());
+				SongNode newNode= new SongNode(nameField.getText().trim(),artistField.getText().trim(), albumField.getText().trim(),yearField.getText().trim());
 				
 		        library.Add(newNode);
 		        //has sort in it 
@@ -173,9 +195,9 @@ public class Controller{
 		          
 		           //show details as soon as you add,and its auto selected
 		        	   nameLabel.setText(newNode.SongName);
-				   artistLabel.setText(newNode.ArtistName);
-				   albumLabel.setText(newNode.Album);
-				   yearLabel.setText(newNode.Year);
+					   artistLabel.setText(newNode.ArtistName);
+					   albumLabel.setText(newNode.Album);
+					   yearLabel.setText(newNode.Year);
 		       
 				   listView.setItems(library.getsongList());
 			} 
@@ -187,16 +209,20 @@ public class Controller{
      
 	     }
 	
+		nameField.clear();
+		artistField.clear();
+		albumField.clear();
+		yearField.clear();
+	
 	}
 	
 	public void editClicked() {
 		
-
-		if(nameFieldedit.getText().equals("")) {
+		if(nameFieldedit.getText().trim().equals("")) {
 			Alert alert_name = new Alert(Alert.AlertType.WARNING, "Song name is empty.", ButtonType.OK);
 			alert_name.showAndWait();
 		}
-		else if(artistFieldedit.getText().equals("")) {
+		else if(artistFieldedit.getText().trim().equals("")) {
 			Alert alert_artist = new Alert(Alert.AlertType.WARNING, "Artist name is empty.", ButtonType.OK);
 			alert_artist.showAndWait();
 		}
@@ -214,7 +240,7 @@ public class Controller{
 				}
 			    // ... user chose OK
 				SongNode song = listView.getSelectionModel().getSelectedItem();	
-				library.Edit(song.SongName, song.ArtistName, nameFieldedit.getText(), artistFieldedit.getText(), albumFieldedit.getText(), yearFieldedit.getText());
+				library.Edit(song.SongName, song.ArtistName, nameFieldedit.getText().trim(), artistFieldedit.getText().trim(), albumFieldedit.getText().trim(), yearFieldedit.getText().trim());
 				listView.setItems(library.getsongList());
 			} else {
 			    // ... user chose CANCEL or closed the dialog
@@ -222,6 +248,11 @@ public class Controller{
 			}
 	        
 		}
+	nameFieldedit.clear();
+	artistFieldedit.clear();
+	albumFieldedit.clear();
+	yearFieldedit.clear();
+	
 	}
 	
 	public void delClicked() {
@@ -242,6 +273,7 @@ public class Controller{
 			int index=library.songList.indexOf(song); //find the index of this song in AL
 			library.Delete(song.SongName, song.ArtistName);
 			listView.getSelectionModel().select(index);
+			details();
 			listView.setItems(library.getsongList());
 		 }
 		

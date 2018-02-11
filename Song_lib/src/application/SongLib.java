@@ -1,11 +1,13 @@
 package application;
 
+import java.util.Optional;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.scene.control.*;
 public class SongLib extends Application {
 	//Rahil Chertara 
 	Stage window;
@@ -13,7 +15,10 @@ public class SongLib extends Application {
       	 launch(args);
     }
 	
-
+	/*@authors
+	 * Rahil Chertara
+	 * Avantika Yellapantula
+	 * */
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -24,8 +29,25 @@ public class SongLib extends Application {
 	    window.setTitle("Song Library");
 	    window.setOnCloseRequest(e->{
 	    		e.consume();
-	    	//	listController.toFile();
-	    		closeProgram();
+	    		if(listController.save_check==0) {
+	    			//save button not clicked
+	    			Alert alert_confirm = new Alert(Alert.AlertType.CONFIRMATION);
+	    			alert_confirm.setTitle("Confirmation of Close");
+	    			alert_confirm.setHeaderText("Are you sure you want to close the program without saving?");
+	    			Optional<ButtonType> result = alert_confirm.showAndWait();
+	    			if (result.get() == ButtonType.OK){
+	    			    // ... user chose OK
+	    				closeProgram();
+	    			 }
+	    			
+	    			else {
+	    			    // ... user chose CANCEL or closed the dialog
+	    				
+	    			}
+	    		}else {
+	    			closeProgram();
+	    		}
+	    		
 	    });
 	    window.setScene(new Scene(root,950,800));
 	    window.setResizable(false);

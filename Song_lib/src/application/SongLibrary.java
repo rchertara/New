@@ -17,7 +17,10 @@ public class SongLibrary {
 	
 	   private final static String fileName ="hate.txt";//Name of the song data!
 		
-	//Rahil Chertara 
+	   /*@authors
+	    * Rahil Chertara
+	    * Avantika Yellapantula
+	    * */
 	
 	//public songList<SongNode> arrayList;
 	ObservableList<SongNode> songList;

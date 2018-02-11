@@ -1,8 +1,12 @@
 package application;
 
 public class SongNode implements Comparable <SongNode>{
-
-	//Rahil Chertara
+	
+	
+	/*@authors
+	 * Rahil Chertara
+	 * Avantika Yellapantula
+	 * */
 	
 	String SongName;
 	String ArtistName;
