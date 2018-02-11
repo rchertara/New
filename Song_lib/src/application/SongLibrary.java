@@ -186,10 +186,10 @@ public class SongLibrary {
 					songList.remove(i);
 					songList.add(target);
 					
-//					node.setSongName(newName);
-//					node.setArtistName(newArtist);
-//					node.setAlbum(newAlb);
-//					node.setYear(newYear);
+					/*node.setSongName(newName);
+					node.setArtistName(newArtist);
+					node.setAlbum(newAlb);
+					node.setYear(newYear);*/
         	   
 					
 					

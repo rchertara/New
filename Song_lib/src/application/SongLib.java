@@ -49,7 +49,7 @@ public class SongLib extends Application {
 	    		}
 	    		
 	    });
-	    window.setScene(new Scene(root,950,800));
+	    window.setScene(new Scene(root,950,650));
 	    window.setResizable(false);
 	    window.show();        
     
