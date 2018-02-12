@@ -241,11 +241,11 @@ public class Controller{
 			    // ... user chose OK
 				SongNode song = listView.getSelectionModel().getSelectedItem();	
 				try {
-				library.Edit(song.SongName, song.ArtistName, nameFieldedit.getText().trim(), artistFieldedit.getText().trim(), albumFieldedit.getText(), yearFieldedit.getText());
-				}catch(NullPointerException e) {
-					//System.out.println("Null Error:");
-				
-				}
+					library.Edit(song.SongName, song.ArtistName, nameFieldedit.getText().trim(), artistFieldedit.getText().trim(), albumFieldedit.getText(), yearFieldedit.getText());
+					}catch(NullPointerException e) {
+						//System.out.println("Null Error:");
+					
+					}
 				listView.setItems(library.getsongList());
 			} else {
 			    // ... user chose CANCEL or closed the dialog

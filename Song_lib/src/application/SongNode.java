@@ -36,6 +36,10 @@ public class SongNode implements Comparable <SongNode>{
 	   //these use the comparable method so we can use FX collections sort 
 	   public int compareTo(SongNode otherSong) { //uses object compare
 		   int ans=0;
+		
+		  if(this.SongName==null||this.ArtistName==null||otherSong.SongName==null||otherSong.ArtistName==null) {
+			  return -1;
+		  }
 		   
 		   if ((this.SongName.toLowerCase().compareTo(otherSong.SongName.toLowerCase()))  == 0 ){ //uses string compare TO
 		    
@@ -48,14 +52,16 @@ public class SongNode implements Comparable <SongNode>{
 		    		ans=this.ArtistName.toLowerCase().compareTo(otherSong.ArtistName.toLowerCase());
 		    		return ans;
 		    		}
-		    }
+		   }
 		    
 		    else {
 		    	ans=this.SongName.toLowerCase().compareTo(otherSong.SongName.toLowerCase());	
 		    	return ans;
 		    }
-	   
+		   
+	  
 	   }
+		   
 	   
 
 	   @Override
@@ -66,7 +72,7 @@ public class SongNode implements Comparable <SongNode>{
 	      }
 	  //    this.getClass() != songItem.getClass())
 	      else if(songItem == null || !(songItem instanceof SongNode)) {
-	                                   
+	            return false;                      
 	      }
 	      
 	      else {
@@ -77,7 +83,6 @@ public class SongNode implements Comparable <SongNode>{
 	    	  boolean flag2= ArtistName.equals(song.ArtistName);
 	    	  return flag1&&flag2;
 	   }
-	 	  return false;
 	  
 	}
 		

@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 
 public class SongLibrary {
 	
-	   private final static String fileName ="hate.txt";//Name of the song data!
+	   private final static String fileName ="test.txt";//Name of the song data!
 		
 	   /*@authors
 	    * Rahil Chertara
@@ -34,7 +34,7 @@ public class SongLibrary {
 		 
 		
 	}
-	public ObservableList<SongNode> getsongList() {  //still not sure if i need this        
+	public ObservableList<SongNode> getsongList() { //still not sure if i need this        
 		    return this.songList;     
     }    
 	
@@ -72,12 +72,18 @@ public class SongLibrary {
 				for(int i=0;i<temp.length;i++) {
 					textArray[i]=temp[i];
 				}
+				
+				if(textArray[0]==null||textArray[1]==null) {
+					continue;
+				}
 					
 				SongNode newNode=new SongNode(textArray[0],textArray[1],textArray[2],textArray[3]);	
 				
 			//MUST MAKE A CATCH HERE FOR if songs are dupliate 
+				
+				
 				this.songList.add(newNode);
-			
+				
 					
 					
 				}
@@ -186,10 +192,10 @@ public class SongLibrary {
 					songList.remove(i);
 					songList.add(target);
 					
-					/*node.setSongName(newName);
-					node.setArtistName(newArtist);
-					node.setAlbum(newAlb);
-					node.setYear(newYear);*/
+//					node.setSongName(newName);
+//					node.setArtistName(newArtist);
+//					node.setAlbum(newAlb);
+//					node.setYear(newYear);
         	   
 					
 					
