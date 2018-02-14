@@ -215,7 +215,9 @@ public class SongLibrary {
 		
  
 		
-	    if(song.SongName.equals(newName)&&song.ArtistName.equals(newArtist)) {
+	    if(song.SongName.toLowerCase().equals(newName.toLowerCase())&&song.ArtistName.toLowerCase().equals(newArtist.toLowerCase())) {
+	    	song.setSongName(newName);
+	    	song.setArtistName(newArtist);
 	    	song.setAlbum(newAlb);
 	    	song.setYear(newYear);
 	    	return;
@@ -250,6 +252,7 @@ public class SongLibrary {
 		   
 		   
 		   SongNode newNode= new SongNode(newName,newArtist,newAlb,newYear);
+		   songList.remove(song);
 		   songList.add(newNode); //reg add
 		   FXCollections.sort(songList);
 		   return;
@@ -260,7 +263,7 @@ public class SongLibrary {
 	    
 	   
 	    /*
-		
+		not good logic 
 	    SongNode target= new SongNode(newName,newArtist,newAlb,newYear);
 		
 	    int targetIndex= songList.indexOf(target);
