@@ -194,11 +194,7 @@ public class Controller{
 		           listView.getSelectionModel().select(index);//as soon as you add must select it 
 		          
 		           //show details as soon as you add,and its auto selected
-		        	   nameLabel.setText(newNode.SongName);
-					   artistLabel.setText(newNode.ArtistName);
-					   albumLabel.setText(newNode.Album);
-					   yearLabel.setText(newNode.Year);
-		       
+		        	      details();
 				   listView.setItems(library.getsongList());
 			} 
 			
@@ -250,7 +246,7 @@ library.Edit(song,nameFieldedit.getText().trim(), artistFieldedit.getText().trim
 						//System.out.println("Null Error:");
 					
 					}
-			
+			    details();
 				listView.setItems(library.getsongList());
 			} 
 			else {

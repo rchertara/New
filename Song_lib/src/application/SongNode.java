@@ -148,7 +148,37 @@ public String toString() {
 public String toText() {
 	String ans="";
     
-	ans=this.SongName+","+this.ArtistName+","+this.Album+","+this.Year+'\n'; //take out all fields 
+	String s;
+	String a;
+	String al;
+	String ye;
+	
+	if(this.SongName==null) {
+		s="";
+	}
+	else {
+		s=this.SongName;
+	}
+	if(this.ArtistName==null) {
+		a="";
+	}
+	else {
+		a=this.ArtistName;
+	}
+	if(this.Album==null) {
+		al="";
+	}
+	else {
+		al=this.Album;
+	}
+	if(this.Year==null) {
+		ye="";
+	}
+	else {
+		ye=this.Year;
+	}
+	
+	ans=s+","+a+","+al+","+ye+'\n'; //take out all fields 
 
 	return ans;
 

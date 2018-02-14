@@ -135,7 +135,41 @@ public class SongLibrary {
 	
 	
 	public void Add(SongNode newSong) {
+     
+		boolean flag=true;
+		String lowerSong=newSong.SongName.toLowerCase();
+		String lowerArtist=newSong.ArtistName.toLowerCase();
 		
+		for(SongNode i: songList) {
+			
+			if(lowerSong.equals(i.SongName.toLowerCase())&& lowerArtist.equals(i.ArtistName.toLowerCase())){
+				
+				flag=false;
+			
+			}
+			
+			else {
+				continue;
+			}
+			
+			
+		}
+		
+		if(flag==true) {
+			songList.add(newSong);
+		    
+			FXCollections.sort(songList);
+			return;
+		}
+		
+		else {
+			Alert alert = new Alert(Alert.AlertType.WARNING, "Song already in list.", ButtonType.OK);
+			alert.showAndWait();
+			 return;
+		}
+		
+		
+	/*
 		if(!songList.contains(newSong)){
 		
 			
@@ -152,7 +186,7 @@ public class SongLibrary {
 			alert.showAndWait();
 			 return;
 		}
-	
+	*/
 	
 	}
 	
@@ -186,6 +220,46 @@ public class SongLibrary {
 	    	song.setYear(newYear);
 	    	return;
 	    }
+	    
+	    
+	    String lowerSong=newName.toLowerCase();
+	    String lowerArtist=newArtist.toLowerCase();
+	    
+	    
+	   boolean flag=true; //assume not in list 
+	   
+	   for(SongNode i :songList) {
+		   
+		   
+		   if(i.SongName.toLowerCase().equals(lowerSong) && i.ArtistName.toLowerCase().equals(lowerArtist)) {
+			   
+			   flag=false;
+			   
+		   }
+		   
+	}
+	   
+	   
+	   if(flag==false) {
+		   Alert alert = new Alert(Alert.AlertType.WARNING, "Song already in list. Edit cannot be made.", ButtonType.OK);
+			alert.showAndWait();
+			return;
+	   }
+	   
+	   else {
+		   
+		   
+		   SongNode newNode= new SongNode(newName,newArtist,newAlb,newYear);
+		   songList.add(newNode); //reg add
+		   FXCollections.sort(songList);
+		   return;
+		   
+	   }
+	    
+	    
+	    
+	   
+	    /*
 		
 	    SongNode target= new SongNode(newName,newArtist,newAlb,newYear);
 		
@@ -198,8 +272,9 @@ public class SongLibrary {
 			    SongNode node =songList.get(i);
 				if(node.getSongName()==song.SongName && node.getArtistName()==song.ArtistName) {
        
+				
 					songList.remove(i);
-					songList.add(target);
+					Add(target);
 			
 					FXCollections.sort(songList);
 					return;
@@ -220,7 +295,7 @@ public class SongLibrary {
 				return;
 				
 			}
-	
+	*/
 	
 	}
 	
