@@ -213,9 +213,19 @@ public class SongLibrary {
 		 }
 			
 			else {
+				if(newName==target.SongName && newArtist==target.ArtistName) {
+					
+					target.Album=newAlb;
+					target.Year=newYear;
+					songList.remove(targetIndex);
+					songList.add(target);
+					FXCollections.sort(songList);
+				}
+				else {
 				Alert alert = new Alert(Alert.AlertType.WARNING, "Song already in list. Edit cannot be made.", ButtonType.OK);
 				alert.showAndWait();
 				return;
+				}
 			}
 	
 	
