@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 public class SongLib extends Application {
-	//Rahil Chertara 
+	
 	Stage window;
 	public static void main(String[] args) {
       	 launch(args);

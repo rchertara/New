@@ -140,7 +140,7 @@ public void setYear(String year) {
 public String toString() {
 
 	String ans="";
-	ans=this.SongName+"->"+this.ArtistName;
+	ans=this.SongName+"---->"+this.ArtistName;
 	return ans;
 	
 }

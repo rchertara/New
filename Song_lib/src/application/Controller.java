@@ -189,7 +189,7 @@ public class Controller{
 				
 		        library.Add(newNode);
 		        //has sort in it 
-		        int index=library.songList.indexOf(newNode);
+		           int index=library.songList.indexOf(newNode);
 		        
 		           listView.getSelectionModel().select(index);//as soon as you add must select it 
 		          
@@ -246,7 +246,13 @@ library.Edit(song,nameFieldedit.getText().trim(), artistFieldedit.getText().trim
 						//System.out.println("Null Error:");
 					
 					}
+			   SongNode target= new SongNode(nameFieldedit.getText(),artistFieldedit.getText());
+			   int index=library.songList.indexOf(target);
+				if(index!=-1) {
+				listView.getSelectionModel().select(index);
 			    details();
+				}
+				
 				listView.setItems(library.getsongList());
 			} 
 			else {

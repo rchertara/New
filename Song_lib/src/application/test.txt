@@ -1,2 +1,0 @@
-a,b,c,d
-AAab,ZZZZ,h,i
