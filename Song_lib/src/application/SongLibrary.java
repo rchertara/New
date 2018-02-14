@@ -28,7 +28,7 @@ public class SongLibrary {
 	
  
 	public SongLibrary() {
-		//this.songList=FXCollections.observablesongList();
+	 	  //this.songList=FXCollections.observablesongList();
 		 // this.songList= new songList<SongNode>();
 		  this.songList = FXCollections.observableArrayList();
 		 
@@ -51,6 +51,7 @@ public class SongLibrary {
 	        }
 	     	 
 	    }
+	 
 	public void parse(){
 		String text="";
 		BufferedReader buffer = null;
@@ -176,30 +177,30 @@ public class SongLibrary {
 		
 	}
 	
-	public void Edit(String currSong,String currArtist, String newName, String newArtist, String newAlb, String newYear) {
+	public void Edit(SongNode song, String newName, String newArtist, String newAlb, String newYear) {
 		
  
-		SongNode target= new SongNode(newName,newArtist,newAlb,newYear);
+		
+	    if(song.SongName.equals(newName)&&song.ArtistName.equals(newArtist)) {
+	    	song.setAlbum(newAlb);
+	    	song.setYear(newYear);
+	    	return;
+	    }
+		
+	    SongNode target= new SongNode(newName,newArtist,newAlb,newYear);
+		
+	    int targetIndex= songList.indexOf(target);
+		
 	
-		int targetIndex= songList.indexOf(target);
-      
 			if(targetIndex==-1) {
 			
 				for (int i = 0; i < songList.size(); i++) {
 			    SongNode node =songList.get(i);
-				if(node.getSongName()==currSong && node.getArtistName()==currArtist) {
+				if(node.getSongName()==song.SongName && node.getArtistName()==song.ArtistName) {
        
 					songList.remove(i);
 					songList.add(target);
-					
-//					node.setSongName(newName);
-//					node.setArtistName(newArtist);
-//					node.setAlbum(newAlb);
-//					node.setYear(newYear);
-        	   
-					
-					
-					
+			
 					FXCollections.sort(songList);
 					return;
 				}
@@ -213,26 +214,21 @@ public class SongLibrary {
 		 }
 			
 			else {
-				if(newName==target.SongName && newArtist==target.ArtistName) {
-					
-					target.Album=newAlb;
-					target.Year=newYear;
-					songList.remove(targetIndex);
-					songList.add(target);
-					FXCollections.sort(songList);
-				}
-				else {
+				
 				Alert alert = new Alert(Alert.AlertType.WARNING, "Song already in list. Edit cannot be made.", ButtonType.OK);
 				alert.showAndWait();
 				return;
-				}
+				
 			}
 	
 	
 	}
 	
 	
+
 	
+	
+
 }
 	
 	
